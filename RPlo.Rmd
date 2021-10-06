@@ -1,0 +1,35 @@
+---
+title: "R_Plots"
+author: "Abu Bakar Siddiqur Rahman"
+date: "10/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## DataExploration
+
+# Scatter Plot with 2 Variables
+
+this plot will help to understand by getting the 
+average age for each program. The data visualization
+provide a quick view that which age group prefer which program.
+```{r}
+dat <- read.csv("HFS.csv")
+library(dplyr) 
+library(ggplot2)
+
+df <- group_by(dat, program_name)
+df2 <- summarise(df, ageMean = mean(age))
+
+ggplot(data = df2, mapping = aes(x = program_name, y = ageMean)) + 
+  geom_point()
+
+# This plot will give the idea which program has participated by
+# a variety of age groups.
+ggplot(data = dat, mapping = aes(x = program_name, y = age)) + 
+  geom_point()
+```
+
